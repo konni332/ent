@@ -12,6 +12,10 @@ readme = "README.md"
 keywords = ["cli", "filesystem", "tree"]
 categories = ["command-line-utilities"]
 
+[[bin]]
+name = "ent"
+path = "src/main.rs"
+
 [[bench]]
 name = "bench_tree"
 harness = false
