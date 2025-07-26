@@ -2,6 +2,15 @@
 name = "ent"
 version = "0.1.0"
 edition = "2024"
+authors = ["konni332"]
+description = "tree but better"
+license = "MIT"
+repository = "https://github.com/konni332/ent"
+homepage = "https://github.com/konni332/ent"
+documentation = "https://docs.rs/ent"
+readme = "README.md"
+keywords = ["cli", "filesystem", "tree"]
+categories = ["command-line-utilities"]
 
 [[bench]]
 name = "bench_tree"
