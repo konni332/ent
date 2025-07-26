@@ -3,6 +3,13 @@ use clap::{Parser, ValueEnum};
 
 
 #[derive(Parser, Debug, Clone, Default)]
+#[command(
+    name = "ent",
+    version,
+    author,
+    about = "Like tree but better",
+    long_about = None
+)]
 pub struct Cli {
 
     /// Path to the directory to search. Defaults to the current working directory
