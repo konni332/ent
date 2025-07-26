@@ -22,7 +22,7 @@ It supports recursive traversal of file systems and flexible export formats.
 ## Installation
 
 ````shell
-cargo install ent
+cargo install ent-tree
 ````
 
 ---
