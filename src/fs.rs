@@ -46,10 +46,15 @@ impl TreeEntry {
     }
 
     fn build_recursive(cli: &Cli, path: &Path, parent: &mut TreeEntry, depth: usize) -> Result<()> {
+        let show_hidden = cli.hidden || cli.all;
+        let show_ignored = cli.ignored || cli.all;
+        let show_dirs_only = cli.dirs_only;
+        let show_files_only = cli.files_only;
+
         let walker = WalkBuilder::new(path)
-            .hidden(!cli.hidden && !cli.all)
-            .git_ignore(!cli.ignored && !cli.all)
-            .git_exclude(!cli.ignored && !cli.all)
+            .hidden(!show_hidden)
+            .git_ignore(!show_ignored)
+            .git_exclude(!show_ignored)
             .parents(true)
             .max_depth(Some(1))
             .build();
@@ -75,18 +80,16 @@ impl TreeEntry {
                 .map(|s| s.to_string_lossy().into_owned())
                 .unwrap_or_default();
 
-            if !cli.hidden && is_hidden(&path) {
-                continue;
-            }
 
             let is_dir = entry.file_type().map(|ft| ft.is_dir()).unwrap_or(false);
 
-            if cli.dirs_only && !is_dir {
+            if show_dirs_only && !is_dir {
                 continue;
             }
-            if cli.files_only && is_dir {
+            else if show_files_only && is_dir {
                 continue;
             }
+
             let mut child: TreeEntry = if is_dir {
                 TreeEntry::new_dir(name)
             }

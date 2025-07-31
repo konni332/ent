@@ -4,8 +4,7 @@ use tempfile::tempdir;
 use std::fs::{create_dir, create_dir_all, File};
 use std::io::Write;
 use std::path::PathBuf;
-use ent::{TreeEntry, Cli, Format};
-
+use ent_tree::{Cli, Format, TreeEntry};
 
 fn bench_build_tree(c: &mut Criterion) {
     let tmp_dir = tempdir().unwrap();
